@@ -55,5 +55,7 @@ class BaseMethod(object):
             dist_way += self.distance_matrix[way[i],way[i+1]]
         return dist_way
 
-a = BaseMethod(4)
-print(a.start())
+
+if __name__ == '__main__':
+    a = BaseMethod(4)
+    print(a.start())
