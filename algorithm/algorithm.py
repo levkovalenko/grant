@@ -55,6 +55,17 @@ class BaseMethod(object):
             dist_way += self.distance_matrix[way[i],way[i+1]]
         return dist_way
 
+    def get_distance_matrix(self):
+        return self.distance_matrix
+
+    def put_distance_matrix(self, matrix):
+        self.distance_matrix = matrix
+
+    def get_ways(self):
+        return self.__ways
+
+a = BaseMethod(4)
+print(a.start())
 
 if __name__ == '__main__':
     a = BaseMethod(4)
