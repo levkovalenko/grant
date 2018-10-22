@@ -64,9 +64,6 @@ class BaseMethod(object):
     def get_ways(self):
         return self.__ways
 
-a = BaseMethod(4)
-print(a.start())
-
 if __name__ == '__main__':
     a = BaseMethod(4)
     print(a.start())
