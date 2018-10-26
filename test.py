@@ -1,6 +1,7 @@
 import numpy as np
 import algorithm.algorithm as alg
 
+
 # TODO test this all
 class test:
     def __init__(self, s, matrix, n0):
@@ -98,9 +99,10 @@ if __name__ == '__main__':
 
     b_list = list([0 for i in range(1, T)])  # количество рухнувших на каждой итерации
     out = list()
-    #    arr_s = task.
+    arr_s = list()
     for k in range(N):
         s = task.start()[0]
+        arr_s.append(s)
         obj = test(s, matrix, n0)
         for i in range(M):
             for j in range(0, T - 1):
@@ -117,4 +119,6 @@ if __name__ == '__main__':
         out.append(b_list)
 
     print(out)  # таблица из тз
-#    print(1 - 1/(M * P))  # Экспериментальный уровень временной состоятельности
+#    print([sum(i) for i in out])
+    # TODO check this equation (when T is deleted this will return negativity)
+    print(1 - (1 / (M * P * T)) * (1 / N) * sum([sum(i) for i in out]))  # Экспериментальный уровень временной состоятельности
