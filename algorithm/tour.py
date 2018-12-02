@@ -31,7 +31,7 @@ class Tour(object):
     def crossover(cls, p_tour1, p_tour2, cross_len=3):
         child = p_tour1
         number_of_towns = len(p_tour1)
-        pos = randint(1,number_of_towns-cross_len)
+        pos = randint(0,number_of_towns-cross_len-1)
         new_towns = set()
         old_towns = set()
         for i in range(pos, cross_len+pos):
@@ -44,6 +44,17 @@ class Tour(object):
             child[child.index(town_del)] = town_add
         return child
 
+    @classmethod
+    def mutation(cls, child):
+        a = randint(0, len(child)-1)
+        b = randint(0, len(child)-1)
+        while a == b:
+            a = randint(0, len(child))
+            b = randint(0, len(child))
+        child[a], child[b] = child[b], child[a]
+        return child
+
 
 if __name__ == "__main__":
     print(Tour.crossover([1, 2, 3, 4, 5, 6, 7, 8], [5,6,8,3,7,2,4,1],4))
+    print(Tour.mutation([1, 2, 3, 4, 5, 6, 7, 8]))

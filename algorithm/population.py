@@ -53,3 +53,4 @@ class Population(object):
         towns = [(dist, num) for num, dist in enumerate(dist_for_towns)]
         towns.sort()
         return towns
+
