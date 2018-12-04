@@ -1,11 +1,13 @@
 from random import randint
 
+
 class Tour(object):
     def __init__(self, tour=list(), good_view=True, dist_matrix=None):
         if good_view:
             self.tour = tour
         else:
-            self.tour = tour.append(tour[0])
+            self.tour = tour
+            self.tour.append(tour[0])
         if dist_matrix:
             self.calc_distance(dist_matrix)
         else:
@@ -14,7 +16,7 @@ class Tour(object):
     def calc_distance(self, matrix):
         dist_way = 0.
         for i in range(len(self.tour) - 1):
-            dist_way += matrix[self.tour[i], self.tour[i + 1]]
+            dist_way += matrix[self.tour[i]][self.tour[i + 1]]
         self.__dist = dist_way
 
     @property
@@ -24,7 +26,7 @@ class Tour(object):
     def __str__(self):
         string = ""
         for town in self.tour:
-            string += f"{town} "
+            string += f"{town} -> "
         return string
 
     @classmethod
@@ -42,7 +44,7 @@ class Tour(object):
         towns_to_delet = new_towns - old_towns
         for town_add, town_del in list(zip(list(towns_to_add), list(towns_to_delet))):
             child[child.index(town_del)] = town_add
-        return child
+        return Tour(child, False)
 
     @classmethod
     def mutation(cls, child):
@@ -52,7 +54,7 @@ class Tour(object):
             a = randint(0, len(child))
             b = randint(0, len(child))
         child[a], child[b] = child[b], child[a]
-        return child
+        return Tour(child, False)
 
 
 if __name__ == "__main__":
